@@ -7,6 +7,7 @@ API cho web:
 ---------------------------------------------------------------
 Tìm sách
 ```JavaScript
+    METHOD: POST
     LINK: /webAPI/search-book-name
     INPUT:
       keySearch : key tìm kiếm sách
@@ -23,6 +24,7 @@ Tìm sách
 ---------------------------------------------------------------
 Hiện tất cả các sách
 ```JavaScript
+    METHOD: POST
     LINK: /webAPI/show-book-name
     INPUT:
       bookNumber : số lượng sách trong 1 trang hiện
@@ -41,6 +43,7 @@ Hiện tất cả các sách
 ---------------------------------------------------------------
 Mượn sách
 ```JavaScript
+    METHOD: POST
     LINK: /webAPI/borrow-book
     INPUT:
       bookID : ID sách
@@ -53,6 +56,7 @@ Mượn sách
 ---------------------------------------------------------------
 Thông tin sách
 ```JavaScript
+    METHOD: POST
     LINK: /webAPI/book-detail
     INPUT:
       bookID : ID sách
@@ -73,6 +77,7 @@ API cho desktop:
 ---------------------------------------------------------------
 Danh sách sách có trong thư viện
 ```JavaScript
+    METHOD: GET
     LINK: /desktopAPI/show-book-list
     INPUT:
     OUTPUT:
@@ -90,6 +95,7 @@ Danh sách sách có trong thư viện
 ---------------------------------------------------------------
 Thêm sách vào thư viện
 ```JavaScript
+    METHOD: POST
     LINK: /desktopAPI/add-book
     INPUT:
         bookName: têm sách
@@ -103,6 +109,7 @@ Thêm sách vào thư viện
 ---------------------------------------------------------------
 Xóa sách trong thư viện
 ```JavaScript
+    METHOD: POST
     LINK: /desktopAPI/delete-book
     INPUT:
         bookID: ID sách
@@ -114,6 +121,7 @@ Xóa sách trong thư viện
 ---------------------------------------------------------------
 Chỉnh sửa sách trong thư viện
 ```JavaScript
+    METHOD: POST
     LINK: /desktopAPI/adjust-book
     INPUT:
         bookID: ID sách 
