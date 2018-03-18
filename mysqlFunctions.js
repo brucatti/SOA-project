@@ -16,12 +16,36 @@ con.connect(function(err){
 	console.log("Connection to databases established");
 });
 
-exports.searchBookName = function searchBookName(keyName,callback){
-	con.query("SELECT id,book_name,quantity FROM soa.books where book_name regexp '" + keyName + "'",function(err,rows){
+exports.searchBookName = function searchBookName(keySearch,callback){
+	con.query("SELECT id,book_name,quantity FROM soa.books where book_name regexp '" + keySearch + "'",function(err,rows){
+		console.log(rows[1]);
 		var result = {'books':rows};
 		callback(null,result);
 	});
 }
+
+exports.showBookName = function showBookName(bookNumber,page,callback){
+	con.query("SELECT id,book_name,quantity FROM soa.books",function(err,rows){
+		var numOfPage = Math.ceil(Object.keys(rows).length/bookNumber);
+		var begin = (page - 1) * bookNumber;
+		var end = page * bookNumber;
+		if (end > Object.keys(rows).length) 
+			end = Object.keys(rows).length;
+		console.log(numOfPage);
+		console.log(begin);
+		console.log(end);
+		var result = [];
+		for (var i = begin;i<end;i++){
+			result.push(rows[i]);
+		}
+		result = {
+					'numOfPage':numOfPage,
+					'books':result
+				};
+		callback(null,result);
+	});
+}
+
 
 exports.borrowBook = function borrowBook(bookID,bookQuantity,callback){
 	con.query("SELECT quantity FROM soa.books where id = '"+bookID+"'",function(err,rows){

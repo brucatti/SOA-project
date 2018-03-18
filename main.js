@@ -25,20 +25,29 @@ app.use(bodyParser.urlencoded({	extended: true })); // support encoded bodies
 console.log('Server started! At http://localhost:' + port);
 
 app.post('/search-book-name', function(req,res){
-	console.log ("/search-book-name");
-	var keyName = req.body.keyName;
-	console.log(req.body);
-	SQL.searchBookName(keyName,function(err,result){
+	console.log ("webAPI -- /search-book-name");
+	var keySearch = req.body.keySearch;
+	SQL.searchBookName(keySearch,function(err,result){
 		res.send(result);
 		res.end();
 	});
 });
 
+app.post('/show-book-name', function(req,res){
+	console.log ("webAPI -- /show-book-name");
+	var bookNumber = req.body.bookNumber;
+	var page = req.body.page;
+	SQL.showBookName(bookNumber,page,function(err,result){
+		res.send(result);
+		res.end();
+	});
+});
+
+
 app.post('/borrow-book', function(req,res){
-	console.log ("/borrow-book");
+	console.log ("webAPI -- /borrow-book");
 	var bookID = req.body.bookID;
-	var bookQuantity = req.body.bookQuantity;	
-	console.log(req.body);
+	var bookQuantity = req.body.bookQuantity;
 	SQL.borrowBook(bookID,bookQuantity,function(err,result){
 		res.send(result);
 		res.end();
@@ -46,11 +55,14 @@ app.post('/borrow-book', function(req,res){
 });
 
 app.post('/book-detail', function(req,res){
-	console.log ("/book-detail");
+	console.log ("webAPI -- /book-detail");
 	var bookID = req.body.bookID;
-	console.log(req.body);
 	SQL.bookDetail(bookID,function(err,result){
 		res.send(result);
 		res.end();
 	});
 });
+
+
+
+
