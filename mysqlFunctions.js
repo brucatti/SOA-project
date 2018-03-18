@@ -18,7 +18,6 @@ con.connect(function(err){
 
 exports.searchBookName = function searchBookName(keySearch,callback){
 	con.query("SELECT id,book_name,quantity FROM soa.books where book_name regexp '" + keySearch + "'",function(err,rows){
-		console.log(rows[1]);
 		var result = {'books':rows};
 		callback(null,result);
 	});
@@ -31,9 +30,6 @@ exports.showBookName = function showBookName(bookNumber,page,callback){
 		var end = page * bookNumber;
 		if (end > Object.keys(rows).length) 
 			end = Object.keys(rows).length;
-		console.log(numOfPage);
-		console.log(begin);
-		console.log(end);
 		var result = [];
 		for (var i = begin;i<end;i++){
 			result.push(rows[i]);

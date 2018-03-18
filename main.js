@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({	extended: true })); // support encoded bodies
 
 console.log('Server started! At http://localhost:' + port);
 
-app.post('/search-book-name', function(req,res){
+app.post('/webAPI/search-book-name', function(req,res){
 	console.log ("webAPI -- /search-book-name");
 	var keySearch = req.body.keySearch;
 	SQL.searchBookName(keySearch,function(err,result){
@@ -33,7 +33,7 @@ app.post('/search-book-name', function(req,res){
 	});
 });
 
-app.post('/show-book-name', function(req,res){
+app.post('/webAPI/show-book-name', function(req,res){
 	console.log ("webAPI -- /show-book-name");
 	var bookNumber = req.body.bookNumber;
 	var page = req.body.page;
@@ -44,7 +44,7 @@ app.post('/show-book-name', function(req,res){
 });
 
 
-app.post('/borrow-book', function(req,res){
+app.post('/webAPI/borrow-book', function(req,res){
 	console.log ("webAPI -- /borrow-book");
 	var bookID = req.body.bookID;
 	var bookQuantity = req.body.bookQuantity;
@@ -54,7 +54,7 @@ app.post('/borrow-book', function(req,res){
 	});
 });
 
-app.post('/book-detail', function(req,res){
+app.post('/webAPI/book-detail', function(req,res){
 	console.log ("webAPI -- /book-detail");
 	var bookID = req.body.bookID;
 	SQL.bookDetail(bookID,function(err,result){
