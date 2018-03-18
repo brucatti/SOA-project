@@ -63,6 +63,42 @@ app.post('/webAPI/book-detail', function(req,res){
 	});
 });
 
+app.get('/desktopAPI/show-book-list', function(req,res){
+	console.log ("desktopAPI -- /show-book-list");
+	SQL.bookList(function(err,result){
+		res.send(result);
+		res.end();
+	});
+});
 
+app.post('/desktopAPI/add-book', function(req,res){
+	console.log ("desktopAPI -- /add-book");
+	var bookName = req.body.bookName;
+	var bookQuantity = req.body.bookQuantity;
+	var bookDescription = req.body.bookDescription;
+	SQL.addBook(bookName,bookDescription,bookQuantity,function(err,result){
+		res.send(result);
+		res.end();
+	});
+});
 
+app.post('/desktopAPI/delete-book', function(req,res){
+	console.log ("desktopAPI -- /delete-book");
+	var bookID = req.body.bookID;
+	SQL.deleteBook(bookID,function(err,result){
+		res.send(result);
+		res.end();
+	});
+});
 
+app.post('/desktopAPI/adjust-book', function(req,res){
+	console.log ("desktopAPI -- /adjust-book");
+	var bookID = req.body.bookID;
+	var bookName = req.body.bookName;
+	var bookQuantity = req.body.bookQuantity;
+	var bookDescription = req.body.bookDescription;
+	SQL.adjustBook(bookID,bookName,bookDescription,bookQuantity,function(err,result){
+		res.send(result);
+		res.end();
+	});
+});
