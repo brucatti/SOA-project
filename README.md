@@ -6,7 +6,7 @@ Tổng hợp API:
 API cho web:
 ---------------------------------------------------------------
 Tìm sách
-```
+```JavaScript
     LINK: /webAPI/search-book-name
     INPUT:
       keySearch : key tìm kiếm sách
@@ -22,7 +22,7 @@ Tìm sách
 ```
 ---------------------------------------------------------------
 Hiện tất cả các sách
-```
+```JavaScript
     LINK: /webAPI/show-book-name
     INPUT:
       bookNumber : số lượng sách trong 1 trang hiện
@@ -40,7 +40,7 @@ Hiện tất cả các sách
   ```
 ---------------------------------------------------------------
 Mượn sách
-```
+```JavaScript
     LINK: /webAPI/borrow-book
     INPUT:
       bookID : ID sách
@@ -52,7 +52,7 @@ Mượn sách
 ```
 ---------------------------------------------------------------
 Thông tin sách
-```
+```JavaScript
     LINK: /webAPI/book-detail
     INPUT:
       bookID : ID sách
@@ -61,7 +61,7 @@ Thông tin sách
           "book_detail": [
               {
                   "id": id sách,
-                  "book_name": "tên sách",
+                  "book_name": tên sách,
                   "description": mô tả sách
               }
           ]
@@ -71,4 +71,57 @@ Thông tin sách
 
 API cho desktop:
 ---------------------------------------------------------------
-Updating...
+Danh sách sách có trong thư viện
+```JavaScript
+    LINK: /desktopAPI/show-book-list
+    INPUT:
+    OUTPUT:
+      {
+          "booksList": [
+              {
+                  "id": id sách,
+                  "book_name": tên sách,
+                  "description": mô tả sách,
+                  "quantity": số lượng sách
+              }
+          ]
+      }
+```
+---------------------------------------------------------------
+Thêm sách vào thư viện
+```JavaScript
+    LINK: /desktopAPI/add-book
+    INPUT:
+        bookName: têm sách
+        bookQuantity: số lượng sách
+        bookDescription: thông tin sách
+    OUTPUT:
+      {
+          'status': trạng thái
+      }
+```
+---------------------------------------------------------------
+Xóa sách trong thư viện
+```JavaScript
+    LINK: /desktopAPI/delete-book
+    INPUT:
+        bookID: ID sách
+    OUTPUT:
+      {
+          'status': trạng thái 
+      }
+```
+---------------------------------------------------------------
+Chỉnh sửa sách trong thư viện
+```JavaScript
+    LINK: /desktopAPI/adjust-book
+    INPUT:
+        bookID: ID sách 
+        bookName: têm sách
+        bookQuantity: số lượng sách
+        bookDescription: thông tin sách
+    OUTPUT:
+      {
+          'status': trạng thái
+      }
+```
